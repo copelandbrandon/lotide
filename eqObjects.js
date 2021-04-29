@@ -10,10 +10,10 @@ const eqArrays = function(array1, array2) {
 
   if (array1.length !== array2.length) {
     return false;
-  } 
+  }
   for (let i = 0; i < array1.length; i++) {
     if (array1[i] !== array2[i]) {
-        return false;
+      return false;
     }
   }
   return true;
@@ -22,22 +22,22 @@ const eqArrays = function(array1, array2) {
 //return boolean value based on perfect match
 // objects are equal when they have same # of keys
 //& value of key in one object is the same as value of key in the other
-const eqObjects = function(obj1, obj2){
-  if (Object.keys(obj1).length !== Object.keys(obj2).length){
+const eqObjects = function(obj1, obj2) {
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false;
   }
-    for (let key in obj1){
+  for (let key in obj1) {
       
-      if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])){
+    if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
 
-        let result = eqArrays(obj1[key], obj2[key]);
-        return result;
-      } else if (obj1[key] !== obj2[key]){
-          return false;
-        } 
-      }
+      let result = eqArrays(obj1[key], obj2[key]);
+      return result;
+    } else if (obj1[key] !== obj2[key]) {
+      return false;
+    }
+  }
     
-    return true;
+  return true;
 };
 
 
