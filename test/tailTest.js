@@ -1,22 +1,27 @@
 const tail = require('../tail');
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 
-//checking that the tailArr is correct
-const result = tail(["Hello", "Lighthouse", "Labs"]);
-assertEqual(result.length, 2);
-assertEqual(result[0], "Lighthouse");
-assertEqual(result[1], "Labs");
+describe('#tail', () => {
 
-//checking that original array is not modified
-const words = ["Yo Yo", "Lighthouse", "Labs"];
-tail(words);
-assertEqual(words.length, 3);
+  it ('should return [Lighthouse, labs] for [Hello, Lighthouse, Labs]', () => {
+    const result = tail(["Hello", "Lighthouse", "Labs"]);
+    assert.strictEqual(result[0], 'Lighthouse');
+    assert.strictEqual(result[1], "Labs");
+  });
 
-//checking to make sure an empty array still returns an empty array
-const empty = [];
-console.log('Should log an empty array if input is an empty array:', tail(empty));
+  it ('should not alter the original array', () => {
+    const words = ["Yo Yo", "Lighthouse", "Labs"];
+    tail(words);
+    assert.deepEqual(words, ['Yo Yo', 'Lighthouse', 'Labs']);
+  });
 
-//testing an array with a single element returns an empty array
-const singleElem = [1];
-tail(singleElem);
-console.log('Should log an empty array if input is single element array:', tail(singleElem));
+  it ('should return an empty array for []', () => {
+    const empty = [];
+    assert.deepEqual(tail(empty), []);
+  });
+
+  it ('should return an empty array for [1]', () => {
+    const singleElem = [1];
+    assert.deepEqual(tail(singleElem), []);
+  });
+});
